@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captcha</title>
-    <link rel="stylesheet" href="captcha.css" />
-    <script src="captcha.js" defer></script>
-  </head>
-  <body>
-    <form onsubmit="handleSubmit(event)">
-      <label for="numberInput">Enter a number (1-1000):</label>
-      <input type="number" id="numberInput" min="1" max="1000" required />
-      <button type="submit">Submit</button>
+    <link rel="stylesheet" href="captcha.css"> <!-- Lien vers le fichier CSS -->
+    <script src="captcha.js" defer></script> <!-- Lien vers le fichier JS -->
+</head>
+<body>
+    <form id="inputForm" onsubmit="handleSubmit(event)">
+        <label for="numberInput">Enter a number (1-1000):</label>
+        <input type="number" id="numberInput" min="1" max="1000" required>
+        <button type="submit">Submit</button>
     </form>
     <div id="output"></div>
 
@@ -20,5 +20,5 @@
         <p>Please solve the CAPTCHA:</p>
         <input type="checkbox" id="captchaResolved"> I have solved the CAPTCHA
     </div>
-  </body>
+</body>
 </html>
