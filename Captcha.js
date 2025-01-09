@@ -5,8 +5,19 @@ const form = document.getElementById("inputForm");
 const numberInput = document.getElementById("numberInput");
 const outputDiv = document.getElementById("output");
 
+let requestCount = 0;
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  requestCount++;
+
+  if (requestCount > 10) {
+    document.getElementById("captchaSection").style.display = "block";
+
+    alert("Erreur 403: Trop de requêtes. Veuillez résoudre le CAPTCHA.");
+    return;
+  }
+
   const N = parseInt(numberInput.value);
 
   if (isNaN(N) || N < 1 || N > 1000) {
@@ -61,6 +72,7 @@ async function waitForCaptcha() {
     const captchaInterval = setInterval(() => {
       if (isCaptchaResolved()) {
         clearInterval(captchaInterval);
+        requestCount = 10; // Réinitialise le compteur pour permettre la poursuite des requêtes
         resolve(); // Continuez lorsque le CAPTCHA est résolu
       }
     }, 1000); // Vérifiez toutes les secondes
