@@ -10,10 +10,10 @@ async function fetchAndDisplay(n) {
 }
 
 function handleSubmit(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
     const n = parseInt(document.getElementById('numberInput').value);
     if (n >= 1 && n <= 1000) {
-        fetchAndDisplay(n); // Call the function with user input
+        fetchAndDisplay(n);
     } else {
         alert('Please enter a number between 1 and 1000.');
     }
