@@ -1,11 +1,10 @@
-const API_KEY =
-  "QFYeykBdQKdBtLhvHuK+hlH19ZxKrOLx3L6WUx+qRpfh9vMYAJdYb2oxcpE5KTBfEhmqrrhEvRVeODIZAQEnIOTQqqG/j6FUGLohcKveATIuOWDePxGmPOdcu4NLMCWwCg8dGdatkqKZlUhos2yl3DGIuUL4JVhlpmvPN5Li8WUQXFptUmZqBZupowmVQ+Sb82O/zdObyaLVdjNnlXe02zWpeepFsOxUqk2nVJGN0RCEgH+OG8t5bdeLm4lKFoBQa4wAh5oVpJ8ErwhZNgdkLKqbwYX4cUGWHtOAcjRYcY1wxY/T8CXm6TG3tRwqbWmdGN0jvg9rVqpSPTFI7uwyVDxTtP5PAMBqMh4OZbwbidupU2OAw8wMGiHVj67ekOMI6dfq+7rZq/QcQJYjsEzMMNeA6hkj0Em8f8GUCpSIhSmPcgTqGt/bi3g/bkSwkNNaYQnu+X0GYKHH/fm88SJHUKVxvMb4TFBi7PDTDFH0qoXrbd4Z25D1mveDTjO0D65McMVwyg5CQlifCfGDmlSTSpgEHJ3uRPSYeF6ueJo8JGufYRv9HwAd1zKyHsASV2DmYT/p9dXFrNRqp9OmYM1lmqjdwLLibJ5mKF28B1Ku2sDg93UM1CBTgsDw9lsXOmccYSzVHUfbUL8C+qUJZ1cDZP34kEwbt/q+f9eWtD26vzQ=_0_1";
+const API_KEY = "YOUR_API_KEY_HERE";
+
+let requestCount = 0;
 
 const form = document.getElementById("inputForm");
 const numberInput = document.getElementById("numberInput");
 const outputDiv = document.getElementById("output");
-
-let requestCount = 0;
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -44,7 +43,7 @@ form.addEventListener("submit", async (event) => {
     try {
       const response = await fetch("https://api.prod.jcloudify.com/whoami", {
         headers: {
-          Authorization: `Bearer ${API_KEY}`, // Ajoutez l'API_KEY si nécessaire
+          Authorization: `Bearer ${API_KEY}`,
         },
       });
 
@@ -57,7 +56,7 @@ form.addEventListener("submit", async (event) => {
         outputDiv.innerHTML += `${currentIndex}. Forbidden<br>`;
         if (response.status === 403) {
           outputDiv.innerHTML += `CAPTCHA detected. Please solve it to continue.<br>`;
-          await waitForCaptcha(); // Attendre que l'utilisateur résolve le CAPTCHA
+          await waitForCaptcha();
         }
       }
     } catch (error) {
@@ -78,13 +77,13 @@ async function waitForCaptcha() {
     const captchaInterval = setInterval(() => {
       if (isCaptchaResolved()) {
         clearInterval(captchaInterval);
-        requestCount = 10; // Réinitialise le compteur pour permettre la poursuite des requêtes
-        resolve(); // Continuez lorsque le CAPTCHA est résolu
+        requestCount = 10;
+        resolve();
       }
-    }, 1000); // Vérifiez toutes les secondes
+    }, 1000);
   });
 }
 
 function isCaptchaResolved() {
-  return document.getElementById("captchaResolved")?.checked; // Vérifiez si le CAPTCHA a été résolu
+  return document.getElementById("captchaResolved")?.checked;
 }
