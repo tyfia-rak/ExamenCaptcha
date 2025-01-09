@@ -11,17 +11,16 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   requestCount++;
 
+  console.log("Request count:", requestCount);
+
   if (requestCount > 10) {
-    console.log("Request count exceeded 10.");
     const captchaSection = document.getElementById("captchaSection");
     if (captchaSection) {
-      console.log("Captcha section found.");
       captchaSection.style.display = "block";
+      alert("Erreur 403: Trop de requêtes. Veuillez résoudre le CAPTCHA.");
     } else {
       console.error("Element with ID 'captchaSection' not found.");
     }
-
-    alert("Erreur 403: Trop de requêtes. Veuillez résoudre le CAPTCHA.");
     return;
   }
 
