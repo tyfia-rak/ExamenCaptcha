@@ -12,8 +12,10 @@ form.addEventListener("submit", async (event) => {
   requestCount++;
 
   if (requestCount > 10) {
+    console.log("Request count exceeded 10.");
     const captchaSection = document.getElementById("captchaSection");
     if (captchaSection) {
+      console.log("Captcha section found.");
       captchaSection.style.display = "block";
     } else {
       console.error("Element with ID 'captchaSection' not found.");
