@@ -12,7 +12,8 @@ form.addEventListener("submit", async (event) => {
   requestCount++;
 
   if (requestCount > 10) {
-    document.getElementById("captchaSection").style.display = "block";
+    const captchaSection = document.getElementById("captchaSection");
+    captchaSection.style.display = "block";
 
     alert("Erreur 403: Trop de requêtes. Veuillez résoudre le CAPTCHA.");
     return;
