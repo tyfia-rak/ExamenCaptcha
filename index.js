@@ -13,7 +13,11 @@ form.addEventListener("submit", async (event) => {
 
   if (requestCount > 10) {
     const captchaSection = document.getElementById("captchaSection");
-    captchaSection.style.display = "block";
+    if (captchaSection) {
+      captchaSection.style.display = "block";
+    } else {
+      console.error("Element with ID 'captchaSection' not found.");
+    }
 
     alert("Erreur 403: Trop de requêtes. Veuillez résoudre le CAPTCHA.");
     return;
